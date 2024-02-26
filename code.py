@@ -58,6 +58,7 @@ def display_chat_history(chain):
                 message(st.session_state["generated"][i], key=str(i))
 
 def create_conversational_chain():
+    load_dotenv()
 
     llm = CTransformers(
         streaming=True,
@@ -70,6 +71,7 @@ def create_conversational_chain():
 
     chain = ConversationalRetrievalChain.from_llm(llm=llm, chain_type='stuff', memory=memory)
     return chain
+
 
 
 def main():
