@@ -1,5 +1,4 @@
 import streamlit as st
-from streamlit_chat import message
 from langchain.chains import ConversationalRetrievalChain
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.llms import CTransformers
@@ -12,12 +11,10 @@ from langchain.document_loaders import TextLoader
 from langchain.document_loaders import Docx2txtLoader
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 import os
-from dotenv import load_dotenv
 import tempfile
 import urllib.request
 import requests
 
-load_dotenv()
 
 
 def initialize_session_state():
@@ -61,7 +58,6 @@ def display_chat_history(chain):
                 message(st.session_state["generated"][i], key=str(i))
 
 def create_conversational_chain():
-    load_dotenv()
 
     llm = CTransformers(
         streaming=True,
@@ -77,7 +73,7 @@ def create_conversational_chain():
 
 
 def main():
-    load_dotenv()
+
     # Initialize session state
     initialize_session_state()
     st.title('[Versão 1.0] 🦙💬 Llama 2 Chatbot.')
