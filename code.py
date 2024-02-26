@@ -1,15 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[7]:
-
-
-OPENAI_API_KEY = "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"
-
-
-# In[11]:
-
-
 import openai
 import streamlit as st
 import pandas as pd
@@ -21,18 +9,12 @@ from langchain.vectorstores import FAISS
 from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI
 from langchain.chains import ConversationalRetrievalChain
-
-
-# In[12]:
-
-
-import streamlit as st
-import openai
+import os
 
 # Configurações do ChatBot
 st.title("Este é o ChatBot desenvolvido por Pedro Sampaio Amorim. Inclua um texto para debater com o bot!")
 
-openai.api_key = OPENAI_API_KEY
+openai.api_key = st.secrets['OPENAI_API_KEY']
 
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
